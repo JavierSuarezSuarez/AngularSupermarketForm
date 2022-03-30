@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Formulario';
+  title = 'Formulario de un Supermercado - Javier Suárez Suárez';
 }

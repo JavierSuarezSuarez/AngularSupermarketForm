@@ -1,0 +1,67 @@
+<!---------------------------------------------------------------------------- Form ----------------------------------------------->
+<p class="aux_text">{{formtext}}</p>
+<form class="form_div">
+    <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="product.nombre" name="nombre">
+    </mat-form-field> <br>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Categoría</mat-label>
+        <input matInput [(ngModel)]="product.categoria" name="categoria">
+    </mat-form-field> <br>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput [(ngModel)]="product.precio" name="precio">
+    </mat-form-field> <br>
+
+    <button [style.display]= "addbtnVisible ? 'inline-block': 'none'" id ="addbtn" mat-raised-button color="primary" (click)="addProduct()">Añadir producto</button>
+    <button [style.display]= "confirmbtnVisible ? 'inline-block': 'none'" id ="confirmbtn" mat-raised-button color="accent" (click)="confirmUpdate()">Guardar cambios</button>
+</form> <br><br>
+
+
+<!---------------------------------------------------------------------------- Table ----------------------------------------------->
+<p class="aux_text">{{tabletext}}</p>
+
+<table id="tabla" mat-table [dataSource]="productlist" class="mat-elevation-z8">
+  
+     <!-- Id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let product"> {{product.id}} </td>
+    </ng-container>
+    
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let product"> {{product.nombre}} </td>
+    </ng-container>
+  
+    <!-- Category Column -->
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef> Categoría</th>
+      <td mat-cell *matCellDef="let product"> {{product.categoria}} </td>
+    </ng-container>
+  
+    <!-- Price Column -->
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let product"> {{product.precio}} </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Editar</th>
+        <td mat-cell *matCellDef="let product"> <button mat-raised-button color="accent" (click)="updateProduct(product.id)">Editar</button> </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Eliminar</th>
+        <td mat-cell *matCellDef="let product"> <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">Eliminar</button> </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnasTabla;"></tr>
+</table>
